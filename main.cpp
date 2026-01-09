@@ -14,11 +14,24 @@ sqlite3* openDatabase(const char* filename) {
     return db; // return the sqlite3* pointer
 }
 
+void create_student(const char* name, const char* surname, const char* sex, const char* dob) {
+    std::string sql_command = std::string("INSERT INTO Student VALUES ('") 
+                        + name + "', '" 
+                        + surname + "', '" 
+                        + sex + "', '" 
+                        + dob + "');";
+
+    std::cout << sql_command;
+}
+
 int main() {
     sqlite3* myDB = openDatabase("test.db");
-
+    int age =  22;
     if (myDB) {
         std::cout << "Database opened successfully!" << std::endl;
+        
+        create_student("Tash", "Not Tash", "M", "07-05-2003");
+
         sqlite3_close(myDB);  // always close it when done
     }
 }
